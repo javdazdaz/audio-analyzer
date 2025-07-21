@@ -1,0 +1,7 @@
+dash
+dash-player
+librosa
+numpy
+plotly
+scipy
+matplotlib
