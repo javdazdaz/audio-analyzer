@@ -4,6 +4,7 @@ import numpy as np
 import plotly.graph_objs as go
 from scipy import signal
 from scipy.fft import rfft, rfftfreq
+import librosa
 
 def generate_waveform(y, sr, time_range=None):
     """
