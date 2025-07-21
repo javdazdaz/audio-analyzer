@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
-
 from dash import html, dcc
 import dash_player
 
 layout = html.Div([
-    html.H1("Audio Analysis Dashboard", style={'textAlign': 'center', 'margin': '20px 0'}),
+    html.H1(
+        "Audio Analysis Dashboard",
+        style={'textAlign': 'center', 'margin': '20px 0'}
+    ),
 
     dcc.Upload(
         id='upload-audio',
@@ -37,20 +38,47 @@ layout = html.Div([
         style={'display': 'none', 'margin': '20px 0'}
     ),
 
+    # Stores para guardar tiempo actual, datos de audio, y zooms ejes X e Y
     dcc.Store(id='audio-current-time', data=0),
-
-    html.Div([
-        html.Div(dcc.Graph(id='waveform-graph'), style={'width': '49%', 'display': 'inline-block'}),
-        html.Div(dcc.Graph(id='spectrogram-graph'), style={'width': '49%', 'display': 'inline-block', 'float': 'right'}),
-    ]),
-
-    html.Div([
-        html.Div(dcc.Graph(id='fft-graph'), style={'width': '49%', 'display': 'inline-block'}),
-        html.Div(dcc.Graph(id='spectral-density-graph'), style={'width': '49%', 'display': 'inline-block', 'float': 'right'}),
-    ]),
-
     dcc.Store(id='audio-data'),
-    dcc.Store(id='current-time-range'),
-    dcc.Store(id='fft-cache'),
-    dcc.Store(id='psd-cache'),
+
+    # Stores para zooms en waveform
+    dcc.Store(id='waveform-zoom-x', data=None),
+    dcc.Store(id='waveform-zoom-y', data=None),
+
+    # Stores para zooms en spectrogram
+    dcc.Store(id='spectrogram-zoom-x', data=None),
+    dcc.Store(id='spectrogram-zoom-y', data=None),
+
+    # Stores para zooms en fft
+    dcc.Store(id='fft-zoom-x', data=None),
+    dcc.Store(id='fft-zoom-y', data=None),
+
+    # Stores para zooms en psd
+    dcc.Store(id='psd-zoom-x', data=None),
+    dcc.Store(id='psd-zoom-y', data=None),
+
+    # Contenedores de gráficos divididos para mejor layout
+    html.Div([
+        html.Div(
+            dcc.Graph(id='waveform-graph'),
+            style={'width': '49%', 'display': 'inline-block'}
+        ),
+        html.Div(
+            dcc.Graph(id='spectrogram-graph'),
+            style={'width': '49%', 'display': 'inline-block', 'float': 'right'}
+        ),
+    ], style={'marginBottom': '20px'}),
+
+    html.Div([
+        html.Div(
+            dcc.Graph(id='fft-graph'),
+            style={'width': '49%', 'display': 'inline-block'}
+        ),
+        html.Div(
+            dcc.Graph(id='spectral-density-graph'),
+            style={'width': '49%', 'display': 'inline-block', 'float': 'right'}
+        ),
+    ]),
+
 ], style={'padding': '20px'})
