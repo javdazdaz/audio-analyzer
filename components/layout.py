@@ -58,7 +58,12 @@ layout = html.Div([
     dcc.Store(id='psd-zoom-x', data=None),
     dcc.Store(id='psd-zoom-y', data=None),
 
-    # Contenedores de gráficos divididos para mejor layout
+    # Añade Storage para guardar figuras cacheadas (sin zoom)
+    dcc.Store(id='waveform-fig-cache'),
+    dcc.Store(id='spectrogram-fig-cache'),
+
+    dcc.Store(id='common-zoom-x', data=None),  # Zoom sincronizado en X para waveform y spectrogram
+# Contenedores de gráficos divididos para mejor layout
     html.Div([
         html.Div(
             dcc.Graph(id='waveform-graph'),
