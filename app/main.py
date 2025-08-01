@@ -3,6 +3,8 @@
 from dash import Dash
 from components.layout import layout
 import callbacks.callbacks  # Importa para registrar callbacks (side effects)
+import config
+
 
 def create_app():
     app = Dash(
@@ -13,6 +15,8 @@ def create_app():
     app.title = 'Audio Analyzer'
     app.layout = layout
     return app
+
+app = create_app()  # gunicorn
 
 if __name__ == '__main__':
     app = create_app()
