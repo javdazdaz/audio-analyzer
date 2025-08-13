@@ -45,7 +45,7 @@ audio_analyzer/
 1. Clona el repositorio :
 
 ```bash
-git clone https://github.com/tuusuario/audio-analyzer.git
+git clone https://github.com/javdazdaz/audio-analyzer.git
 cd audio-analyzer
 ```
 
